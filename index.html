@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>Bookmark Bonanza</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
+        <link rel="stylesheet" href="styles/index.css">
+</head>
+<body>
+        <div class="container">
+                <h1>Bookmark Bonanza</h1>
+                <h3>Hello and Welcome to Bookmark Bonanza!</h3>
+                <p>To start adding bookmarks, please click the "Add Bookmark" button below!</p>
+                <form id="add-bookmark">
+                    <label for="add-bookmark-button"></label>
+                    <button type="submit">Add Bookmark</button>
+                </form>
+                    <div class="dropdown-rating">
+                        <select class='sort-rating'>
+                                <option selected disabled>Sort by Rating:</option>
+                                <option class="5">5</option>
+                                <option class="4">4+</option>
+                                <option class="3">3+</option>
+                                <option class="2">2+</option>
+                                <option class="1">1+</option>
+                              </select>
+                    </div> 
+                
+                <ul class="bookmarks">
+                    *<li class='*unique-id'>
+                        <span class="bookmark-title">*Bookmark Title</span> 
+                        <span class="bookmark-rating">Rating: *Rating</span>
+                            <form id="remove-and-details">
+                             <label for="detailed-describe-or-remove-bookmark"></label>
+                             <input type="checkbox" class="detailed-view-toggle">Detailed View
+                             <button type="submit" class="remove-button">
+                                    Remove Bookmark
+                                </button>
+                        </form>
+                        <li class="detailed-view-on">
+                            <span class="description-on">Description: *descriptionhere</span><br>
+                            <a href="*predone.link.url" class="clickable-link">
+                                View Link
+                            </a>
+                        </li>
+                    </li>*
+                </ul>
+              </div>
+
+
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/cuid/1.3.8/browser-cuid.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="scripts/store.js"></script>
+    <script type="text/javascript" src="scripts/bookmarks.js"></script>
+    <script type="text/javascript" src="scripts/api.js"></script>
+    <script type="text/javascript" src="scripts/index.js"></script>
+
+</body>
+</html>
