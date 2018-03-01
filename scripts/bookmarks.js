@@ -8,7 +8,7 @@ console.log('bookmarks connected to HTML');
 
 const bookmarkList = (function(){
 
-    ///html to add to dom based on events:
+  ///html to add to dom based on events:
 
   const addCreateBookmarkFormToHtml= function() {
     return `
@@ -43,9 +43,9 @@ const bookmarkList = (function(){
     return `
      <li class='${bookmark.id}'>
 
-       <span class="bookmark-title">${bookmarkTitle}</span> 
+       <span class="bookmark-title">${bookmark.title}</span> 
 
-       <span class="bookmark-rating">Rating: ${bookmarkRating}</span>
+       <span class="bookmark-rating">Rating: ${bookmark.rating}</span>
 
        <input type="checkbox" class="detailed-view-toggle">Detailed View
 
@@ -59,9 +59,9 @@ const bookmarkList = (function(){
     return `
     <li class='${bookmark.id}'>
 
-        <span class="bookmark-title">${bookmarkTitle}</span> 
+        <span class="bookmark-title">${bookmark.title}</span> 
 
-        <span class="bookmark-rating">Rating: ${bookmarkRating}</span>
+        <span class="bookmark-rating">Rating: ${bookmark.rating}</span>
 
         <input type="checkbox" class="detailed-view-toggle">Detailed View
 
@@ -83,10 +83,11 @@ const bookmarkList = (function(){
   };
 
 
-//need to create the following:
+  //need to create the following:
 
-//render puts the proper html into the dom(use if statements for the detailed view check):
+  //render puts the proper html into the dom(use if statements for the detailed view check):
   const render = function (){
+      //store.bookmarks.map(obj => )
   };
 
   
@@ -94,6 +95,7 @@ const bookmarkList = (function(){
   //ex: set variables for each new value(ex: titleValue = $('#title-input').val())
   //then add to api.Bookmark(titleValue, linkValue, descriptionValue, ratingValue, |put callback here ex:| values=> {store.addBookmark(values); render();})
   const handleNewBookmarkSubmit = function (){
+
   };
 
 
@@ -102,7 +104,7 @@ const bookmarkList = (function(){
   };
 
 
-  
+
   const handleDetailedViewClicked = function (){
   };
 

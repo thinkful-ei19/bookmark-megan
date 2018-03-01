@@ -17,7 +17,7 @@ const store = (function(){
   };
 
   const toggleCheckedFilter = function() {
-    this.detailedViewCheckedBookmarks = !this.detailedViewCheckedBookmarks;
+    this.detailedViewChecked = !this.detailedViewChecked;
   };
 
   //   const findAndUpdate = function (id, newData){
@@ -30,7 +30,7 @@ const store = (function(){
 
   return {
     bookmarks: [],
-    detailedViewCheckedBookmarks: false,
+    detailedViewChecked: false,
 
     //findAndUpdate,
     findAndDelete,

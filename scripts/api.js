@@ -1,7 +1,8 @@
 'use strict';
 /* global store*/
 
-console.log('api connected to HTML')
+console.log('api connected to HTML');
+
 const api = (function () {
   const BASE_URL = 'https://thinkful-list-api.herokuapp.com/megan';
 
@@ -11,7 +12,7 @@ const api = (function () {
 
 
   const createBookmarks = function(title, description, link, rating, callback){
-    const newBookmark = JSON.stringify({title:title, description: description, link:link, rating:rating });
+    const newBookmark = JSON.stringify({title, description, link, rating});
 
     $.ajax({
       url : `${BASE_URL}/bookmarks`,
