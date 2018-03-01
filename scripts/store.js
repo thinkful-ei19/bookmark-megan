@@ -1,4 +1,4 @@
 'use strict';
 
 
-console.log('store working');
+console.log('store connected to HTML')

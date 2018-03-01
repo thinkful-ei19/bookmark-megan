@@ -6,29 +6,63 @@
         <link rel="stylesheet" href="styles/index.css">
 </head>
 <body>
-        <div class="container">
+        <section class="head-info">
                 <h1>Bookmark Bonanza</h1>
                 <h3>Hello and Welcome to Bookmark Bonanza!</h3>
-                <p>To start adding bookmarks, please click the "Add Bookmark" button below!</p>
-                <form id="add-bookmark">
-                    <label for="add-bookmark-button"></label>
-                    <button type="submit">Add Bookmark</button>
-                </form>
-                    <div class="dropdown-rating">
-                        <select class='sort-rating'>
+                <p class="center">To start adding bookmarks, please click the "Add Bookmark" button below!</p>
+        </section>
+        <section class ="bookmark-basic-controls">
+                    <form id="init-add-bookmark">
+                        <label for="init-add-bookmark-button"></label>
+                        <button type="submit">Add Bookmark</button>
+                    </form>
+                        <div class="sort-by-dropdown-rating">
+                         <select class='sort-rating'>
                                 <option selected disabled>Sort by Rating:</option>
                                 <option class="5">5</option>
                                 <option class="4">4+</option>
                                 <option class="3">3+</option>
                                 <option class="2">2+</option>
                                 <option class="1">1+</option>
-                              </select>
-                    </div> 
-                
-                <ul class="bookmarks">
-                    *<li class='*unique-id'>
-                        <span class="bookmark-title">*Bookmark Title</span> 
-                        <span class="bookmark-rating">Rating: *Rating</span>
+                         </select>
+                        </div> 
+        </section>
+
+        <section class='creating-bookmark-section'>
+                  * <p>Create Bookmark:</p>
+                    <form class="create-bookmark-form">
+                        Title: <input type="text" placeholder="ex: Cats Gone Wild" class="title-input">
+                        <br>
+                        Link: <input type="text" placeholder="ex: YouTube.com..." class="link-input">
+                        <br>
+                        Description: 
+                        <div>
+                            <textarea cols="40" rows="5" class="description-input">
+                            </textarea> 
+                        </div>
+                        <div class="create-dropdown-rating">
+                                <select class='add-rating-input'>
+                                       <option selected disabled>Add Rating:</option>
+                                       <option class="5">5: Amazing</option>
+                                       <option class="4">4: Great</option>
+                                       <option class="3">3:Good</option>
+                                       <option class="2">2: OK</option>
+                                       <option class="1">1: Meh</option>
+                                </select>
+                               </div> 
+                               <br>
+                         <button type="submit" class="create-bookmark-button">
+                             Add Bookmark
+                         </button>
+
+                    </form>*
+        </section>
+
+        <section class = "bookmark-listing">
+            <ul class="bookmarks-rendered">
+                    *<li class='${bookmark.id}'>
+                        <span class="bookmark-title">${bookmarkTitle}</span> 
+                        <span class="bookmark-rating">Rating: ${bookmarkRating}</span>
                             <form id="remove-and-details">
                              <label for="detailed-describe-or-remove-bookmark"></label>
                              <input type="checkbox" class="detailed-view-toggle">Detailed View
@@ -36,15 +70,18 @@
                                     Remove Bookmark
                                 </button>
                         </form>
-                        <li class="detailed-view-on">
-                            <span class="description-on">Description: *descriptionhere</span><br>
-                            <a href="*predone.link.url" class="clickable-link">
+                        <section class="detailed-view-on">
+                        <li>
+                            *<span class="description-on">Description: ${bookmark.description}</span><br>
+                            <a href="${bookmark.link}" class="clickable-link">
                                 View Link
-                            </a>
+                            </a>*
                         </li>
-                    </li>*
-                </ul>
-              </div>
+                    </section>
+                </li>*
+             </ul>
+        </section>
+              
 
 
     

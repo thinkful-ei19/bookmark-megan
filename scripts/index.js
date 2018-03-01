@@ -1,4 +1,4 @@
 'use strict';
 
 
-console.log('index working');
+console.log('index connected to HTML')

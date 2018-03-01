@@ -10,3 +10,19 @@ ul{
 #remove-and-details {
     display: inline;
 }
+
+
+
+h1{
+    font-weight: 900;
+    text-decoration: underline;
+    text-align: center;
+}
+
+.center, h3{
+    text-align: center;
+}
+
+.bookmark-title {
+    font-weight: 800;
+}
