@@ -8,6 +8,8 @@ console.log('bookmarks connected to HTML');
 
 const bookmarkList = (function(){
 
+    ///html to add to dom based on events:
+
   const addCreateBookmarkFormToHtml= function() {
     return `
     <p>Create Bookmark:</p>
@@ -80,15 +82,27 @@ const bookmarkList = (function(){
     </li>`;
   };
 
+
+//need to create the following:
+
+//render puts the proper html into the dom(use if statements for the detailed view check):
   const render = function (){
   };
 
+  
+  //on submit of new bookmark/prevent default/extract values from each label(title,link,etc...)/reset values to blank/use api to createBookmark
+  //ex: set variables for each new value(ex: titleValue = $('#title-input').val())
+  //then add to api.Bookmark(titleValue, linkValue, descriptionValue, ratingValue, |put callback here ex:| values=> {store.addBookmark(values); render();})
   const handleNewBookmarkSubmit = function (){
   };
+
+
 
   const getBookmarkIdFromElement = function(bookmark){
   };
 
+
+  
   const handleDetailedViewClicked = function (){
   };
 
