@@ -4,79 +4,110 @@
 
 // eslint-disable-next-line no-unused-vars
 
-console.log('bookmarks connected to HTML')
+console.log('bookmarks connected to HTML');
 
 const bookmarkList = (function(){
 
   const addCreateBookmarkFormToHtml= function() {
     return `
     <p>Create Bookmark:</p>
-    <form class="create-bookmark-form">
-        Title: <input type="text" placeholder="ex: Cats Gone Wild" class="title-input">
+    <form id="create-bookmark-form">
+
+    <label for="input-title">Title: </label>
+    <input type="text" placeholder="ex: Cats Gone Wild" id="input-title">
         <br>
-        Link: <input type="text" placeholder="ex: YouTube.com..." class="link-input">
+
+    <label for="input-link">Link: </label>
+    <input type="text" placeholder="ex: YouTube.com..." id="input-link">
+         <br>
+
+    <label for="input-description">Description: </label>
         <br>
-        Description: 
-        <div>
-            <textarea cols="40" rows="5" class="description-input">
-            </textarea> 
-        </div>
-        <div class="create-dropdown-rating">
-                <select class='add-rating-input'>
-                       <option selected disabled>Add Rating:</option>
-                       <option class="5">5: Amazing</option>
-                       <option class="4">4: Great</option>
-                       <option class="3">3:Good</option>
-                       <option class="2">2: OK</option>
-                       <option class="1">1: Meh</option>
-                </select>
-               </div> 
-               <br>
-         <button type="submit" class="create-bookmark-button">
+    <textarea placeholder="text here" cols="40" rows="5" id="input-description"></textarea> 
+            <br>
+
+    <label for="input-rating">Rating: </label> 
+        <input type="number" min="1" max="5" id="input-rating">
+            <br>
+            
+    <button type="submit" id="create-bookmark-button">
              Add Bookmark
-         </button>
-         </form>`;
+    </button>
+
+    </form> `;
   };
 
   const addBookmarksRenderedtoHtml = function(bookmark){
     return `
-    <li class='${bookmark.id}'>
-      <span class="bookmark-title">${bookmarkTitle}</span> 
-      <span class="bookmark-rating">Rating: ${bookmarkRating}</span>
-          <form id="remove-and-details">
-           <label for="detailed-describe-or-remove-bookmark"></label>
-           <input type="checkbox" class="detailed-view-toggle">Detailed View
-           <button type="submit" class="remove-button">
-                  Remove Bookmark
-              </button>
-      </form>
-      </li>`;
+     <li class='${bookmark.id}'>
+
+       <span class="bookmark-title">${bookmarkTitle}</span> 
+
+       <span class="bookmark-rating">Rating: ${bookmarkRating}</span>
+
+       <input type="checkbox" class="detailed-view-toggle">Detailed View
+
+       <button type="submit" class="remove-button">
+             Remove Bookmark
+       </button>
+     </li>`;
   };
 
   const addDetailedViewToHTML = function (bookmark){
     return `
     <li class='${bookmark.id}'>
-    <span class="bookmark-title">${bookmarkTitle}</span> 
-    <span class="bookmark-rating">Rating: ${bookmarkRating}</span>
-        <form id="remove-and-details">
-         <label for="detailed-describe-or-remove-bookmark"></label>
-         <input type="checkbox" class="detailed-view-toggle">Detailed View
-         <button type="submit" class="remove-button">
-                Remove Bookmark
-            </button>
-    </form>
-     <section class="detailed-view-on">
-        <li>
-         <span class="description-on">Description: ${bookmark.description}</span><br>
-         <a href="${bookmark.link}" class="clickable-link">
-            View Link
-         </a>
-        </li>
-     </section>
+
+        <span class="bookmark-title">${bookmarkTitle}</span> 
+
+        <span class="bookmark-rating">Rating: ${bookmarkRating}</span>
+
+        <input type="checkbox" class="detailed-view-toggle">Detailed View
+
+        <button type="submit" class="remove-button">
+              Remove Bookmark
+        </button>
+
+        <section class="detailed-view-on">
+          <ul>
+             <li>
+               <span class="description-on">Description: ${bookmark.description}</span><br>
+               <a href="${bookmark.link}" class="clickable-link">
+                    View Link
+               </a>
+             </li>
+          </ul>
+        </section>             
     </li>`;
   };
 
-  return {
+  const render = function (){
+  };
 
+  const handleNewBookmarkSubmit = function (){
+  };
+
+  const getBookmarkIdFromElement = function(bookmark){
+  };
+
+  const handleDetailedViewClicked = function (){
+  };
+
+  //   const handleEditBookmarkSubmit = function(){
+  //   };
+
+  const handleToggleFilterClick = function() {
+  };
+
+  const bindThemAll = function (){
+    handleDetailedViewClicked();
+    handleNewBookmarkSubmit();
+    handleToggleFilterClick();
+    // handleEditBookmarkSubmit(),
+
+  };
+
+  return {
+    render,
+    bindThemAll
   };
 }());
