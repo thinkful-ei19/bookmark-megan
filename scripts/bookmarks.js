@@ -1,6 +1,6 @@
 'use strict';
 
-/* global store */
+/* global store, api */
 
 // eslint-disable-next-line no-unused-vars
 
@@ -83,20 +83,45 @@ const bookmarkList = (function(){
   };
 
 
-  //need to create the following:
 
-  //render puts the proper html into the dom(use if statements for the detailed view check):
   const render = function (){
-      //store.bookmarks.map(obj => )
+    console.log('render called');
+    const newBookmarkHTML = store.bookmarks.map(obj => addBookmarksRenderedtoHtml(obj));
+    $('#bookmarks-rendered').html(newBookmarkHTML);
   };
 
+  // const renderAddBookmarkField = function () {
+  //   $('#creating-bookmark-section').html(addCreateBookmarkFormToHtml);
+  // };
+
+  // const handleAddBookmarkFile = function () {
+  //   $('#init-add-bookmark').on('click', function(event) {
+  //     event.preventDefault();
+  //     renderAddBookmarkField();
+  //     render();
+  //   });
+  // };
   
-  //on submit of new bookmark/prevent default/extract values from each label(title,link,etc...)/reset values to blank/use api to createBookmark
-  //ex: set variables for each new value(ex: titleValue = $('#title-input').val())
-  //then add to api.Bookmark(titleValue, linkValue, descriptionValue, ratingValue, |put callback here ex:| values=> {store.addBookmark(values); render();})
   const handleNewBookmarkSubmit = function (){
+    $('#create-bookmark-form').submit(event => {
+      event.preventDefault();
+      const newTitleName = $('#input-title').val();
+      const newLinkName = $('#input-link').val();
+      const newDescription = $('#input-description').val();
+      const newRating = $('#input-rating').val();
+      api.createBookmarks(newTitleName, newLinkName, newDescription, newRating, (newBookmark)=>{
+        store.addBookmark(newBookmark);
+        $('#input-title').val('');
+        $('#input-link').val('');
+        $('#input-description').val('');
+        $('#input-rating').val('');
+        render();
+      });
 
+    });
   };
+
+
 
 
 
@@ -123,6 +148,8 @@ const bookmarkList = (function(){
   };
 
   return {
+    //handleAddBookmarkFile,
+    handleNewBookmarkSubmit,
     render,
     bindThemAll
   };

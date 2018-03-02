@@ -11,8 +11,9 @@ const api = (function () {
   };
 
 
-  const createBookmarks = function(title, description, link, rating, callback){
-    const newBookmark = JSON.stringify({title, description, link, rating});
+  const createBookmarks = function(title, url, desc, rating, callback){
+    const newBookmark = JSON.stringify({title, url, desc, rating});
+    console.log('createBookmarks' + title);
 
     $.ajax({
       url : `${BASE_URL}/bookmarks`,

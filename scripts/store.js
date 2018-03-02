@@ -8,8 +8,10 @@ console.log('store connected to HTML')
 
 
 const store = (function(){
+  
   const addBookmark = function(bookmark) {
     this.bookmarks.push(bookmark);
+    console.log(this.bookmarks);
   };
 
   const findById = function(id) {
