@@ -1,8 +1,11 @@
 *{
     box-sizing: border-box;
-    background-color: firebrick;
 }
 
+body{
+    background-image: url(https://vignette.wikia.nocookie.net/darktower/images/e/e6/Black_13.png/revision/latest/scale-to-width-down/514?cb=20120217010917);
+    color: white;
+}
 
 ul{
     list-style: none;
