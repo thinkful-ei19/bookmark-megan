@@ -15,26 +15,23 @@ const store = (function(){
   };
 
   const findById = function(id) {
-
+    return this.bookmarks.find(bookmark => bookmark.id === id);
   };
 
   const toggleCheckedFilter = function() {
     this.detailedViewChecked = !this.detailedViewChecked;
   };
 
-  //   const findAndUpdate = function (id, newData){
-  
-  //   };
 
   const findAndDelete = function (id){
-
+    const idBookmark = this.findById(id);
+    this.items.splice(idBookmark, 1);
   };
 
   return {
     bookmarks: [],
     detailedViewChecked: false,
 
-    //findAndUpdate,
     findAndDelete,
     addBookmark,
     findById,

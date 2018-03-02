@@ -27,16 +27,6 @@ const api = (function () {
   };
 
 
-//   const updateBookmarks = function(id, updateData, callback){
-//     $.ajax( {
-//       url : `${BASE_URL}/bookmarks/${id}`,
-//       method : 'PATCH',
-//       contentType : 'application/json',
-//       data : JSON.stringify(updateData),
-//       success : callback
-
-//     });
-//   };
 
   const deleteBookmarks = function(id, callback){
     $.ajax( {

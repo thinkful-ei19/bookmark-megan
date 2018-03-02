@@ -13,30 +13,30 @@ const bookmarkList = (function(){
   const addCreateBookmarkFormToHtml= function() {
     return `
     <p>Create Bookmark:</p>
-    <form id="create-bookmark-form">
+                    <form id="create-bookmark-form">
 
-    <label for="input-title">Title: </label>
-    <input type="text" placeholder="ex: Cats Gone Wild" id="input-title">
-        <br>
+                    <label for="input-title">Title: </label>
+                    <input type="text" placeholder="ex: Cats Gone Wild" id="input-title">
+                        <br>
 
-    <label for="input-link">Link: </label>
-    <input type="text" placeholder="ex: YouTube.com..." id="input-link">
-         <br>
+                    <label for="input-link">Link: </label>
+                    <input type="text" placeholder="ex: YouTube.com..." id="input-link">
+                         <br>
 
-    <label for="input-description">Description: </label>
-        <br>
-    <textarea placeholder="text here" cols="40" rows="5" id="input-description"></textarea> 
-            <br>
+                    <label for="input-description">Description: </label>
+                        <br>
+                    <textarea placeholder="text here" cols="40" rows="5" id="input-description"></textarea> 
+                            <br>
 
-    <label for="input-rating">Rating: </label> 
-        <input type="number" min="1" max="5" id="input-rating">
-            <br>
-            
-    <button type="submit" id="create-bookmark-button">
-             Add Bookmark
-    </button>
+                    <label for="input-rating">Rating:  </label>
+                        <input type="number" min="1" max="5" id="input-rating">
+                            <br>
+                            
+                    <button type="submit" id="create-bookmark-button">
+                             Add Bookmark
+                    </button>
 
-    </form> `;
+                    </form>  `;
   };
 
   const addBookmarksRenderedtoHtml = function(bookmark){
@@ -47,9 +47,9 @@ const bookmarkList = (function(){
 
        <span class="bookmark-rating">Rating: ${bookmark.rating}</span>
 
-       <input type="checkbox" class="detailed-view-toggle">Detailed View
+       <input type="checkbox" id="detailed-view-toggle">Detailed View
 
-       <button type="submit" class="remove-button">
+       <button type="submit" id="remove-button">
              Remove Bookmark
        </button>
      </li>`;
@@ -90,17 +90,17 @@ const bookmarkList = (function(){
     $('#bookmarks-rendered').html(newBookmarkHTML);
   };
 
-  // const renderAddBookmarkField = function () {
-  //   $('#creating-bookmark-section').html(addCreateBookmarkFormToHtml);
-  // };
+  const renderAddBookmarkField = function () {
+    $('#creating-bookmark-section').html(addCreateBookmarkFormToHtml);
+  };
 
-  // const handleAddBookmarkFile = function () {
-  //   $('#init-add-bookmark').on('click', function(event) {
-  //     event.preventDefault();
-  //     renderAddBookmarkField();
-  //     render();
-  //   });
-  // };
+  const handleAddBookmarkFile = function () {
+    $('#init-add-bookmark').on('click', function(event) {
+      event.preventDefault();
+      renderAddBookmarkField();
+      render();
+    });
+  };
   
   const handleNewBookmarkSubmit = function (){
     $('#create-bookmark-form').submit(event => {
@@ -133,23 +133,22 @@ const bookmarkList = (function(){
   const handleDetailedViewClicked = function (){
   };
 
-  //   const handleEditBookmarkSubmit = function(){
-  //   };
-
-  const handleToggleFilterClick = function() {
-  };
+  // const handleToggleFilterClick = function() {
+  //   $('#detailed-view-toggle').click(() => {
+  //     console.log('handled toggle ran');
+  //     store.toggleCheckedFilter();
+  //     render();
+  //   });
+  // };
 
   const bindThemAll = function (){
-    handleDetailedViewClicked();
+    //handleToggleFilterClick();
     handleNewBookmarkSubmit();
-    handleToggleFilterClick();
-    // handleEditBookmarkSubmit(),
-
+    handleAddBookmarkFile();
+    handleDetailedViewClicked();
   };
 
   return {
-    //handleAddBookmarkFile,
-    handleNewBookmarkSubmit,
     render,
     bindThemAll
   };
