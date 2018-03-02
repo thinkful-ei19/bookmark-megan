@@ -57,7 +57,9 @@ const bookmarkList = (function(){
                <span class="col span hidden"> Description: ${bookmark.desc}</span><br>
                <a href="${bookmark.url}" class="col hidden">
                     View Link
-               </a>           
+               </a>    
+               <span class = "col span hidden">...</span>
+               <span class = "col span hidden">...</span>       
     </li>
     `;
   };
