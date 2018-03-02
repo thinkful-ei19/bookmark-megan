@@ -43,41 +43,50 @@ const bookmarkList = (function(){
     return `
     <li data-bookmark-id='${bookmark.id}' class="bookmark-class">
 
-        <span id= 'col' class="bookmark-title">${bookmark.title}</span> 
+        <span class= 'col bookmark-title'>${bookmark.title}</span> 
 
-        <span id= 'col'class="bookmark-rating">Rating: ${bookmark.rating}</span>
+      <span class="col bookmark-rating">Rating: ${bookmark.rating}</span>
+      <div class="col">
+        <input type="checkbox" class="detailed-view-toggle">Detailed View
+        </div>
 
-        <input id= 'col' type="checkbox" class="detailed-view-toggle">Detailed View
-
-        <button id= 'col' type="submit" class="remove-button">
+        <button type="submit" class="col remove-button">
               Remove Bookmark
         </button>
 
         <section class="detailed-view-on">
           <ul>
              <li id = 'display-hidden'>
-               <span id= 'col' class="hidden">Description: ${bookmark.desc}</span><br>
-               <a href="${bookmark.url}" id= 'col' class="hidden">
+               <span class="col hidden"> Description: ${bookmark.desc}</span><br>
+               <a href="${bookmark.url}" class="col hidden">
                     View Link
                </a>
              </li>
           </ul>
         </section>             
-    </li>`;
+    </li>
+    `;
   };
 
 
   const render = function (){
     console.log('render called');
+   
+    let newBookmarkHTML = store.bookmarks.map(obj => addBookmarksRenderedtoHtml(obj));
+   
     if (store.isAdding === true){
       renderAddBookmarkField();
+    }
+    else if (store.filterBy > 0){
+      console.log(store.filterBy);
+      const filtered = store.bookmarks.filter(obj => obj.rating >=store.filterBy);
+      newBookmarkHTML = filtered.map(obj => addBookmarksRenderedtoHtml(obj));
     }
     else {
       $('#creating-bookmark-section').empty();
     }
-
-    const newBookmarkHTML = store.bookmarks.map(obj => addBookmarksRenderedtoHtml(obj));
-    $('#bookmarks-rendered').html(newBookmarkHTML);
+      $('#bookmarks-rendered').html(newBookmarkHTML);
+    
   };
 
   const renderAddBookmarkField = function () {
@@ -138,11 +147,11 @@ const bookmarkList = (function(){
       console.log($(this).is(':checked'));
       if ($(this).is(':checked')===true) {
         console.log($(this).siblings('.detailed-view-on').find('.hidden'));
-        $(this).siblings('.detailed-view-on').find('.hidden').removeClass('hidden');
+        $(this).parent().siblings('.detailed-view-on').find('.hidden').removeClass('hidden');
       }
       if ($(this).is(':checked')===false){
-        $(this).siblings('.detailed-view-on').find('span').addClass('hidden');
-        $(this).siblings('.detailed-view-on').find('a').addClass('hidden');
+        $(this).parent().siblings('.detailed-view-on').find('span').addClass('hidden');
+        $(this).parent().siblings('.detailed-view-on').find('a').addClass('hidden');
       }
 
     });
@@ -152,28 +161,9 @@ const bookmarkList = (function(){
     $('.sort-by-dropdown-rating').on('change', '.sort-rating', function(event){
       const ratingValue = parseInt($(this).val());
       console.log(ratingValue);
-      if (ratingValue===5){
-        store.bookmarks.filter(obj => obj.rating >=5);
-      }
-      else if (ratingValue===4){
-        store.bookmarks.filter(obj => obj.rating >=4);
-      }
-      else if (ratingValue===3){
-        store.bookmarks.filter(obj => obj.rating >=3);
-      }
-      else if (ratingValue===2){
-        store.bookmarks.filter(obj => obj.rating >=2);
-      }
-      else if (ratingValue===1){
-        store.bookmarks.filter(obj => obj.rating >=1);
-      }
-      else if(ratingValue===0){
-        store.bookmarks = store.bookmarks;
-      }
+      store.filterBy = ratingValue;
       render();
-    });
-    ///how do i make it appear? tried store.bookmarks= but it changes whole store and doesn't revert back
-   
+    });   
   };
 
 

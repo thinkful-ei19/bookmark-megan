@@ -1,5 +1,6 @@
 *{
     box-sizing: border-box;
+    background-color: firebrick;
 }
 
 
@@ -7,6 +8,12 @@ ul{
     list-style: none;
     /*margin: auto;*/
 }
+
+#display-hidden{
+    padding: 0px;
+    width: 635px;
+}
+
 
 #remove-and-details {
     display: inline;
@@ -33,9 +40,7 @@ h1{
 .hidden{
     display: none;
 }
-#col {
-    padding: 10px;
-}
+
 
 .sort-by-dropdown-rating{
     display: inline;

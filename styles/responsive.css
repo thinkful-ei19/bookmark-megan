@@ -2,7 +2,7 @@
   box-sizing: border-box;
 }
 
-ul.row {
+#bookmarks-rendered{
   max-width: 1000px;
   padding-left: 20px;
   padding-right: 20px;
@@ -10,32 +10,32 @@ ul.row {
 }
 
 /* Clearfix */
-.row::before,
-.row::after {
+#bookmarks-rendered:before,
+#bookmarks-rendered:after {
   display: table;
   content: '';
 }
 
-.row::after {
+#bookmarks-rendered:after {
   clear: both;
 }
 
-#col{
+.col{
   float: left;
   padding-left: 1.04166666%;
   padding-right: 1.04166666%;
 }
 
 /* Mobile defaults */
-#col {
+.col {
   width: 100%;
 }
 
 
 @media only screen and (min-width: 640px) {
 
-  #col {
-    width: 33.333333%;
+  .col {
+    width: 25%;
   };
 
   .col-full {
