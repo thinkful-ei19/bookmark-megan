@@ -41,22 +41,6 @@ const bookmarkList = (function(){
 
   const addBookmarksRenderedtoHtml = function(bookmark){
     return `
-     <li data-bookmark-id='${bookmark.id}' class= "bookmark-class">
-
-       <span class="bookmark-title">${bookmark.title}</span> 
-
-       <span class="bookmark-rating">Rating: ${bookmark.rating}</span>
-
-       <input type="checkbox" id="detailed-view-toggle">Detailed View
-
-       <button type="submit" id="remove-button">
-             Remove Bookmark
-       </button>
-     </li>`;
-  };
-
-  const addDetailedViewToHTML = function (bookmark){
-    return `
     <li data-bookmark-id='${bookmark.id}' class="bookmark-class">
 
         <span class="bookmark-title">${bookmark.title}</span> 
@@ -72,8 +56,8 @@ const bookmarkList = (function(){
         <section class="detailed-view-on">
           <ul>
              <li>
-               <span class="description-on">Description: ${bookmark.description}</span><br>
-               <a href="${bookmark.link}" class="clickable-link">
+               <span class="hidden">Description: ${bookmark.desc}</span><br>
+               <a href="${bookmark.url}" class="hidden">
                     View Link
                </a>
              </li>
@@ -82,7 +66,32 @@ const bookmarkList = (function(){
     </li>`;
   };
 
+  // const addDetailedViewToHTML = function (bookmark){
+  //   return `
+  //   <li data-bookmark-id='${bookmark.id}' class="bookmark-class">
 
+  //       <span class="bookmark-title">${bookmark.title}</span> 
+
+  //       <span class="bookmark-rating">Rating: ${bookmark.rating}</span>
+
+  //       <input type="checkbox" class="detailed-view-toggle">Detailed View
+
+  //       <button type="submit" class="remove-button">
+  //             Remove Bookmark
+  //       </button>
+
+  //       <section class="detailed-view-on">
+  //         <ul>
+  //            <li>
+  //              <span class="description-on">Description: ${bookmark.description}</span><br>
+  //              <a href="${bookmark.link}" class="clickable-link">
+  //                   View Link
+  //              </a>
+  //            </li>
+  //         </ul>
+  //       </section>             
+  //   </li>`;
+  // };
 
   const render = function (){
     console.log('render called');
@@ -92,6 +101,7 @@ const bookmarkList = (function(){
     else {
       $('#creating-bookmark-section').empty();
     }
+
     const newBookmarkHTML = store.bookmarks.map(obj => addBookmarksRenderedtoHtml(obj));
     $('#bookmarks-rendered').html(newBookmarkHTML);
   };
@@ -116,6 +126,7 @@ const bookmarkList = (function(){
       const newDescription = $('#input-description').val();
       const newRating = $('#input-rating').val();
       api.createBookmarks(newTitleName, newLinkName, newDescription, newRating, (newBookmark)=>{
+        newBookmark.detailedViewChecked=false;
         store.addBookmark(newBookmark);
         $('#input-title').val('');
         $('#input-link').val('');
@@ -129,31 +140,15 @@ const bookmarkList = (function(){
   };
 
 
-
-
-
   const getBookmarkIdFromElement = function(bookmark){
     return $(bookmark)
       .closest('.bookmark-class')
       .data('bookmark-id');
-      //working with api but not with .splice?
   };
 
-
-
-  const handleDetailedViewClicked = function (){
-  };
-
-  // const handleToggleFilterClick = function() {
-  //   $('#detailed-view-toggle').click(() => {
-  //     console.log('handled toggle ran');
-  //     store.toggleCheckedFilter();
-  //     render();
-  //   });
-  // };
 
   const handleBookmarkRemoveClicked = function(){
-    $('#bookmarks-rendered').on('click', '#remove-button', event => {
+    $('#bookmarks-rendered').on('click', '.remove-button', event => {
       console.log('remove handle clicked');
       const id = getBookmarkIdFromElement(event.currentTarget);
       api.deleteBookmarks(id, () => {
@@ -164,8 +159,24 @@ const bookmarkList = (function(){
     });
   };
 
+  const handleDetailedViewClicked = function (){
+    $('#bookmarks-rendered').on('change', '.detailed-view-toggle', function(event) {
+      console.log($(this).is(':checked'));
+      if ($(this).is(':checked')===true) {
+        console.log($(this).siblings('.detailed-view-on').find('.hidden'));
+         $(this).siblings('.detailed-view-on').find('.hidden').removeClass('hidden');
+      }
+      if ($(this).is(':checked')===false){
+        $(this).siblings('.detailed-view-on').find('span').addClass('hidden');
+        $(this).siblings('.detailed-view-on').find('a').addClass('hidden');
+      }
+
+    });
+  };
+
+
+
   const bindThemAll = function (){
-    //handleToggleFilterClick();
     handleNewBookmarkSubmit();
     handleAddBookmarkFile();
     handleDetailedViewClicked();

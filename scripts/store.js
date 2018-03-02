@@ -30,7 +30,7 @@ const store = (function(){
 
   return {
     bookmarks: [],
-    detailedViewChecked: false,
+    //detailedViewChecked: false//how do i get this to be with every bookmark obj?
     isAdding: false,
 
     findAndDelete,

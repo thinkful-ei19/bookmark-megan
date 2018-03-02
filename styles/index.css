@@ -30,3 +30,7 @@ h1{
 .description-input{
     color: black;
 }
+
+.hidden{
+    display: none;
+}
