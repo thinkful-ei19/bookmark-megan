@@ -25,12 +25,13 @@ const store = (function(){
 
   const findAndDelete = function (id){
     const idBookmark = this.findById(id);
-    this.items.splice(idBookmark, 1);
+    this.bookmarks.splice(idBookmark, 1);
   };
 
   return {
     bookmarks: [],
     detailedViewChecked: false,
+    isAdding: false,
 
     findAndDelete,
     addBookmark,

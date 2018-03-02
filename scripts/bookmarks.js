@@ -41,7 +41,7 @@ const bookmarkList = (function(){
 
   const addBookmarksRenderedtoHtml = function(bookmark){
     return `
-     <li class='${bookmark.id}'>
+     <li data-bookmark-id='${bookmark.id}' class= "bookmark-class">
 
        <span class="bookmark-title">${bookmark.title}</span> 
 
@@ -57,7 +57,7 @@ const bookmarkList = (function(){
 
   const addDetailedViewToHTML = function (bookmark){
     return `
-    <li class='${bookmark.id}'>
+    <li data-bookmark-id='${bookmark.id}' class="bookmark-class">
 
         <span class="bookmark-title">${bookmark.title}</span> 
 
@@ -86,6 +86,12 @@ const bookmarkList = (function(){
 
   const render = function (){
     console.log('render called');
+    if (store.isAdding === true){
+      renderAddBookmarkField();
+    }
+    else {
+      $('#creating-bookmark-section').empty();
+    }
     const newBookmarkHTML = store.bookmarks.map(obj => addBookmarksRenderedtoHtml(obj));
     $('#bookmarks-rendered').html(newBookmarkHTML);
   };
@@ -95,15 +101,15 @@ const bookmarkList = (function(){
   };
 
   const handleAddBookmarkFile = function () {
-    $('#init-add-bookmark').on('click', function(event) {
+    $('#init-add-bookmark').on('click',function(event) {
       event.preventDefault();
-      renderAddBookmarkField();
+      store.isAdding = true;
       render();
     });
   };
   
   const handleNewBookmarkSubmit = function (){
-    $('#create-bookmark-form').submit(event => {
+    $('#creating-bookmark-section').on('submit', '#create-bookmark-form', event => {
       event.preventDefault();
       const newTitleName = $('#input-title').val();
       const newLinkName = $('#input-link').val();
@@ -115,6 +121,7 @@ const bookmarkList = (function(){
         $('#input-link').val('');
         $('#input-description').val('');
         $('#input-rating').val('');
+        store.isAdding = false;
         render();
       });
 
@@ -126,6 +133,10 @@ const bookmarkList = (function(){
 
 
   const getBookmarkIdFromElement = function(bookmark){
+    return $(bookmark)
+      .closest('.bookmark-class')
+      .data('bookmark-id');
+      //working with api but not with .splice?
   };
 
 
@@ -141,11 +152,24 @@ const bookmarkList = (function(){
   //   });
   // };
 
+  const handleBookmarkRemoveClicked = function(){
+    $('#bookmarks-rendered').on('click', '#remove-button', event => {
+      console.log('remove handle clicked');
+      const id = getBookmarkIdFromElement(event.currentTarget);
+      api.deleteBookmarks(id, () => {
+        store.findAndDelete(id);
+        render();
+      });
+      render();
+    });
+  };
+
   const bindThemAll = function (){
     //handleToggleFilterClick();
     handleNewBookmarkSubmit();
     handleAddBookmarkFile();
     handleDetailedViewClicked();
+    handleBookmarkRemoveClicked();
   };
 
   return {

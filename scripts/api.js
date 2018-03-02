@@ -40,7 +40,6 @@ const api = (function () {
   return {
     getBookmarks,
     createBookmarks,
-    //updateBookmarks,
     deleteBookmarks
   };
 
