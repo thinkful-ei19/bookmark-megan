@@ -25,7 +25,7 @@ const bookmarkList = (function(){
 
                     <label for="input-description">Description: </label>
                         <br>
-                    <textarea placeholder="text here" cols="40" rows="5" id="input-description"></textarea> 
+                    <textarea placeholder="text here" cols="27" rows="5" id="input-description"></textarea> 
                             <br>
 
                     <label for="input-rating">Rating:  </label>
@@ -43,21 +43,21 @@ const bookmarkList = (function(){
     return `
     <li data-bookmark-id='${bookmark.id}' class="bookmark-class">
 
-        <span class="bookmark-title">${bookmark.title}</span> 
+        <span id= 'col' class="bookmark-title">${bookmark.title}</span> 
 
-        <span class="bookmark-rating">Rating: ${bookmark.rating}</span>
+        <span id= 'col'class="bookmark-rating">Rating: ${bookmark.rating}</span>
 
-        <input type="checkbox" class="detailed-view-toggle">Detailed View
+        <input id= 'col' type="checkbox" class="detailed-view-toggle">Detailed View
 
-        <button type="submit" class="remove-button">
+        <button id= 'col' type="submit" class="remove-button">
               Remove Bookmark
         </button>
 
         <section class="detailed-view-on">
           <ul>
-             <li>
-               <span class="hidden">Description: ${bookmark.desc}</span><br>
-               <a href="${bookmark.url}" class="hidden">
+             <li id = 'display-hidden'>
+               <span id= 'col' class="hidden">Description: ${bookmark.desc}</span><br>
+               <a href="${bookmark.url}" id= 'col' class="hidden">
                     View Link
                </a>
              </li>
@@ -66,32 +66,6 @@ const bookmarkList = (function(){
     </li>`;
   };
 
-  // const addDetailedViewToHTML = function (bookmark){
-  //   return `
-  //   <li data-bookmark-id='${bookmark.id}' class="bookmark-class">
-
-  //       <span class="bookmark-title">${bookmark.title}</span> 
-
-  //       <span class="bookmark-rating">Rating: ${bookmark.rating}</span>
-
-  //       <input type="checkbox" class="detailed-view-toggle">Detailed View
-
-  //       <button type="submit" class="remove-button">
-  //             Remove Bookmark
-  //       </button>
-
-  //       <section class="detailed-view-on">
-  //         <ul>
-  //            <li>
-  //              <span class="description-on">Description: ${bookmark.description}</span><br>
-  //              <a href="${bookmark.link}" class="clickable-link">
-  //                   View Link
-  //              </a>
-  //            </li>
-  //         </ul>
-  //       </section>             
-  //   </li>`;
-  // };
 
   const render = function (){
     console.log('render called');
@@ -164,7 +138,7 @@ const bookmarkList = (function(){
       console.log($(this).is(':checked'));
       if ($(this).is(':checked')===true) {
         console.log($(this).siblings('.detailed-view-on').find('.hidden'));
-         $(this).siblings('.detailed-view-on').find('.hidden').removeClass('hidden');
+        $(this).siblings('.detailed-view-on').find('.hidden').removeClass('hidden');
       }
       if ($(this).is(':checked')===false){
         $(this).siblings('.detailed-view-on').find('span').addClass('hidden');
@@ -174,9 +148,38 @@ const bookmarkList = (function(){
     });
   };
 
+  const handleSortByRating = function (){
+    $('.sort-by-dropdown-rating').on('change', '.sort-rating', function(event){
+      const ratingValue = parseInt($(this).val());
+      console.log(ratingValue);
+      if (ratingValue===5){
+        store.bookmarks.filter(obj => obj.rating >=5);
+      }
+      else if (ratingValue===4){
+        store.bookmarks.filter(obj => obj.rating >=4);
+      }
+      else if (ratingValue===3){
+        store.bookmarks.filter(obj => obj.rating >=3);
+      }
+      else if (ratingValue===2){
+        store.bookmarks.filter(obj => obj.rating >=2);
+      }
+      else if (ratingValue===1){
+        store.bookmarks.filter(obj => obj.rating >=1);
+      }
+      else if(ratingValue===0){
+        store.bookmarks = store.bookmarks;
+      }
+      render();
+    });
+    ///how do i make it appear? tried store.bookmarks= but it changes whole store and doesn't revert back
+   
+  };
+
 
 
   const bindThemAll = function (){
+    handleSortByRating();
     handleNewBookmarkSubmit();
     handleAddBookmarkFile();
     handleDetailedViewClicked();

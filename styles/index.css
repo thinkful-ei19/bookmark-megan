@@ -2,6 +2,7 @@
     box-sizing: border-box;
 }
 
+
 ul{
     list-style: none;
     /*margin: auto;*/
@@ -10,8 +11,6 @@ ul{
 #remove-and-details {
     display: inline;
 }
-
-
 
 h1{
     font-weight: 900;
@@ -33,4 +32,34 @@ h1{
 
 .hidden{
     display: none;
+}
+#col {
+    padding: 10px;
+}
+
+.sort-by-dropdown-rating{
+    display: inline;
+}
+.bookmark-basic-controls{
+text-align: center;
+}
+
+#creating-bookmark-section{
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+}
+
+.bookmark-class {
+    text-align: center; 
+    padding: 0px;
+    width: 50%,
+}
+
+p.center{
+    font-weight: normal;
+}
+
+p{
+    font-weight: bold;
 }
