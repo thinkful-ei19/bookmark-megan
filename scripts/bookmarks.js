@@ -54,16 +54,10 @@ const bookmarkList = (function(){
               Remove Bookmark
         </button>
 
-        <section class="detailed-view-on">
-          <ul>
-             <li id = 'display-hidden'>
-               <span class="col hidden"> Description: ${bookmark.desc}</span><br>
+               <span class="col span hidden"> Description: ${bookmark.desc}</span><br>
                <a href="${bookmark.url}" class="col hidden">
                     View Link
-               </a>
-             </li>
-          </ul>
-        </section>             
+               </a>           
     </li>
     `;
   };
@@ -147,11 +141,12 @@ const bookmarkList = (function(){
       console.log($(this).is(':checked'));
       if ($(this).is(':checked')===true) {
         console.log($(this).siblings('.detailed-view-on').find('.hidden'));
-        $(this).parent().siblings('.detailed-view-on').find('.hidden').removeClass('hidden');
+        $(this).parent().siblings('.span').removeClass('hidden');
+        $(this).parent().siblings('a').removeClass('hidden');
       }
       if ($(this).is(':checked')===false){
-        $(this).parent().siblings('.detailed-view-on').find('span').addClass('hidden');
-        $(this).parent().siblings('.detailed-view-on').find('a').addClass('hidden');
+        $(this).parent().siblings('a').addClass('hidden');
+        $(this).parent().siblings('.span').addClass('hidden');
       }
 
     });
